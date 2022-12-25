@@ -113,9 +113,6 @@ typedef struct builtin
 
 /* toem_shloop.c */
 int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
 
 /* toem_parser.c */
 int is_cmd(info_t *, char *);
@@ -161,7 +158,6 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* toem_atoi.c */
-int interactive(info_t *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
@@ -174,13 +170,13 @@ char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* toem_builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int handle_exit(info_t *);
+int handle_cd(info_t *);
+int handle_help(info_t *);
 
 /* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int handle_history(info_t *);
+int handle_alias(info_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
@@ -194,9 +190,9 @@ void free_info(info_t *, int);
 
 /* toem_environ.c */
 char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
+int handle_env(info_t *);
+int handle_setenv(info_t *);
+int handle_unsetenv(info_t *);
 int populate_env_list(info_t *);
 
 /* toem_getenv.c */
@@ -205,11 +201,9 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* toem_history.c */
-char *get_history_file(info_t *info);
 int write_history(info_t *info);
 int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);

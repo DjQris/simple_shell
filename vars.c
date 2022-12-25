@@ -8,7 +8,6 @@
 *
 * Return: 1 if chain delimeter, 0 otherwise
 */
-
 int is_chain(info_t *info, char *buf, size_t *p)
 {
 	size_t j = *p;
@@ -77,16 +76,15 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 *
 * Return: 1 if replaced, 0 otherwise
 */
-
 int replace_alias(info_t *info)
 {
 	int i;
-	list_t *node;
 	char *p;
 
 	for (i = 0; i < 10; i++)
 	{
-		node = node_starts_with(info->alias, info->argv[0], '=');
+		list_t *node = node_starts_with(info->alias, info->argv[0], '=');
+
 		if (!node)
 		{
 			return (0);
@@ -111,7 +109,6 @@ int replace_alias(info_t *info)
 *
 * Return: 1 if replaced, 0 otherwise
 */
-
 int replace_vars(info_t *info)
 {
 	int i = 0;
@@ -151,14 +148,13 @@ int replace_vars(info_t *info)
 /**
 * replace_string - replaces string
 * @old: address of old string
-* @new: new string
+* @newStr: new string
 *
 * Return: 1 if replaced, 0 otherwise
 */
-
-int replace_string(char **old, char *new)
+int replace_string(char **old, char *newStr)
 {
 	free(*old);
-	*old = new;
+	*old = newStr;
 	return (1);
 }
